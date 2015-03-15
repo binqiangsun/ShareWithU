@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <SurfaceView
+        android:id="@+id/preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:keepScreenOn="true" />
+
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+            
+            <ImageButton
+			        android:id="@+id/btnChgCam"
+			        android:layout_width="60dip"
+			        android:layout_height="60dip"
+			        android:layout_alignParentTop="true"
+			        android:layout_alignParentRight="true"
+			        android:onClick="ChangeCamera"
+			        android:src="@drawable/ic_changecam" 
+			        android:scaleType="centerCrop"
+			        android:background="#00000000"
+			/>
+
+            <ImageButton
+                android:id="@+id/take_picture"
+                android:layout_width="74dip"
+                android:layout_height="139dip"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:onClick="takePicture"
+                android:src="@drawable/ic_camera" 
+                android:scaleType="centerCrop"
+                android:background="#00000000"/>
+        
+
+            
+
+            
+        </RelativeLayout>
+   
+
+    
+   
+
+</RelativeLayout>

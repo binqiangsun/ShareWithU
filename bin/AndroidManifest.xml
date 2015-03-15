@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.binqiang.sharewithu"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="20" />
+    <uses-permission android:name="cn.bmob.permission.push"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.READ_LOGS"/>
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />  
+	<uses-permission android:name="android.permission.USE_CREDENTIALS" />  
+	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />  
+	<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />  
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />  
+	<uses-permission android:name="android.permission.INTERNET" />  
+	<uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />  
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />  
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> 
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />  
+	<uses-permission android:name="android.permission.BROADCAST_STICKY" />  
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.RECEIVE_SMS"/>  
+	<uses-permission android:name="android.permission.SEND_SMS"/>  
+	
+
+    <application
+        android:name="com.binqiang.sharewithu.ShareWithUApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light"
+        >
+         <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" >
+                </action>
+            </intent-filter>
+        </service>
+        <activity
+            android:name="com.binqiang.sharewithu.MainActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+        </activity>
+        <service android:name="com.binqiang.service.GpsService"></service>
+        <activity 
+            android:name="com.binqiang.sharewithu.LoginActivity"
+            android:parentActivityName="com.binqiang.sharewithu.MainActivity" ></activity>
+        <activity 
+            android:name="com.binqiang.sharewithu.SettingActivity"
+            android:parentActivityName="com.binqiang.sharewithu.MainActivity" ></activity>
+        <activity 
+            android:name="com.binqiang.sharewithu.CommunityActivity"
+            android:parentActivityName="com.binqiang.sharewithu.MainActivity" 
+            android:windowSoftInputMode="adjustResize"
+            android:launchMode="singleInstance"
+            ></activity>
+        <activity 
+            android:name="com.binqiang.sharewithu.FriendsActivity"
+            android:parentActivityName="com.binqiang.sharewithu.MainActivity" ></activity>
+        <activity 
+            android:name="com.binqiang.sharewithu.CameraActivity"
+            android:parentActivityName="com.binqiang.sharewithu.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" ></activity>
+        <activity 
+            android:name="com.binqiang.sharewithu.MyImageViewActivity"
+            android:parentActivityName="com.binqiang.sharewithu.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" ></activity>
+       <receiver android:name="com.binqiang.broadcast.SmsBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+            </intent-filter>
+        </receiver>
+        
+       <service
+               android:label="PushService"
+            android:name="cn.bmob.push.lib.service.PushService"
+            android:process="cn.bmob.push"
+            android:permission="cn.bmob.permission.push"
+            android:exported="true">
+             <intent-filter>
+                 <action android:name="cn.bmob.push.lib.service.PushService"/>
+             </intent-filter>
+        </service>
+
+        <receiver android:name="cn.bmob.push.PushReceiver" >
+            <intent-filter android:priority="2147483647" ><!--优先级加最高-->
+                <!-- 系统启动完成后会调用 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />               
+                <!-- 解锁完成后会调用 -->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <!-- 监听网络连通性 -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />               
+            </intent-filter>
+        </receiver>
+        
+        <receiver android:name="com.binqiang.bmob.MyPushMessageReceiver"> 
+            <intent-filter> <!-- 接收 push 消息 --> 
+                <action android:name="cn.bmob.push.action.MESSAGE" />
+                </intent-filter>
+         </receiver>
+        
+        <!--meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyBObuPM6wj18l7EtGgTHiwLx4objXwcq9g"/-->
+        
+        <meta-data  
+        android:name="com.baidu.lbsapi.API_KEY"  
+        android:value="gYFRX0Tu4XGxA3Hzo2HF1tZq" /> 
+        
+        
+    </application>
+
+</manifest>
